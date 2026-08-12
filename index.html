@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050b1d" />
+  <title>With You Agency — Digital Event Experience</title>
+  <style>
+    :root{
+      --bg:#040817;
+      --bg2:#07142e;
+      --ink:#f7fbff;
+      --muted:#a9b6cf;
+      --cyan:#00c7ff;
+      --blue:#0864ff;
+      --violet:#8d3dff;
+      --pink:#ff3dbb;
+      --line:rgba(255,255,255,.12);
+      --glass:rgba(8,18,43,.56);
+      --mx:50vw;
+      --my:30vh;
+      --glow:0 0 42px rgba(0,199,255,.28);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{margin:0;color:var(--ink);font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;background:
+      radial-gradient(900px 500px at 75% -10%,rgba(55,81,255,.22),transparent 62%),
+      linear-gradient(180deg,#040817 0%,#061126 55%,#030713 100%);overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;z-index:-3;background:
+      radial-gradient(700px 520px at var(--mx) var(--my),rgba(0,199,255,.10),transparent 58%),
+      radial-gradient(560px 400px at calc(var(--mx) + 10vw) calc(var(--my) + 12vh),rgba(141,61,255,.10),transparent 60%);pointer-events:none}
+    body::after{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit}
+    .wrap{width:min(1240px,calc(100% - 36px));margin-inline:auto}
+    .topbar{position:fixed;top:16px;left:0;right:0;z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 18px;border:1px solid var(--line);border-radius:20px;background:rgba(4,9,24,.62);backdrop-filter:blur(22px) saturate(160%);box-shadow:0 14px 44px rgba(0,0,0,.28)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.04em}
+    .mark{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--blue) 50%,var(--violet));box-shadow:0 0 28px rgba(0,199,255,.34);font-weight:1000;font-style:italic}
+    .navlinks{display:flex;align-items:center;gap:8px}.navlinks a{padding:10px 12px;color:#d8e2f5;font-size:14px;border-radius:12px}.navlinks a:hover{background:rgba(255,255,255,.07)}
+    .cta{border:1px solid rgba(0,199,255,.35)!important;background:linear-gradient(135deg,rgba(0,199,255,.18),rgba(141,61,255,.16))!important}
+    .hero{min-height:100svh;display:grid;align-items:center;padding:118px 0 60px;position:relative;isolation:isolate}
+    #particles{position:absolute;inset:0;width:100%;height:100%;z-index:-2;opacity:.86}
+    .aurora{position:absolute;inset:-20% -10%;z-index:-2;filter:blur(44px);opacity:.5;pointer-events:none;background:
+      radial-gradient(circle at 22% 28%,rgba(0,199,255,.24),transparent 25%),
+      radial-gradient(circle at 77% 36%,rgba(126,67,255,.26),transparent 26%),
+      radial-gradient(circle at 60% 74%,rgba(255,61,187,.12),transparent 22%);animation:aurora 10s ease-in-out infinite alternate}
+    @keyframes aurora{to{transform:translate3d(4%,-2%,0) scale(1.05) rotate(2deg)}}
+    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:52px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:#bfefff;font-weight:800;text-transform:uppercase;letter-spacing:.18em;font-size:12px;padding:9px 12px;border-radius:999px;border:1px solid rgba(0,199,255,.25);background:rgba(0,199,255,.07)}
+    .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 rgba(0,199,255,.7);animation:pulse 1.8s infinite}@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(0,199,255,0)}}
+    h1{font-size:clamp(56px,7.6vw,112px);line-height:.84;letter-spacing:-.07em;margin:24px 0 24px;font-weight:1000}
+    .grad{color:transparent;background:linear-gradient(100deg,#fff 7%,#a8ecff 40%,var(--cyan) 58%,#765eff 82%);background-clip:text;-webkit-background-clip:text}
+    .hero p{font-size:clamp(17px,1.8vw,22px);line-height:1.55;color:#c5d1e7;max-width:700px;margin:0 0 30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}.btn{padding:14px 18px;border-radius:15px;border:1px solid var(--line);background:rgba(255,255,255,.05);font-weight:850;cursor:pointer;transition:.25s}.btn.primary{background:linear-gradient(135deg,var(--cyan),#2459ff 58%,var(--violet));border-color:transparent;box-shadow:0 12px 36px rgba(0,139,255,.24)}.btn:hover{transform:translateY(-2px)}
+    .hero-visual{position:relative;min-height:560px;perspective:1200px}
+    .device{position:absolute;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);backdrop-filter:blur(18px);box-shadow:0 32px 80px rgba(0,0,0,.36),0 0 60px rgba(0,199,255,.12);overflow:hidden}
+    .device.big{width:92%;right:-5%;top:8%;border-radius:26px;transform:rotateY(-9deg) rotateX(4deg) rotateZ(1deg);animation:floatA 6s ease-in-out infinite}.device.big img{display:block;width:100%;aspect-ratio:3/1;object-fit:cover}
+    .device.small{width:52%;left:-2%;bottom:3%;border-radius:24px;padding:12px;transform:rotateY(13deg) rotateZ(-4deg);animation:floatB 7.3s ease-in-out infinite}.device.small img{width:100%;display:block;border-radius:15px;aspect-ratio:3/1;object-fit:cover}
+    .orb{position:absolute;width:180px;height:180px;border-radius:50%;right:7%;bottom:2%;background:radial-gradient(circle at 34% 32%,#e9fbff 0 2%,#45d6ff 3%,#076cff 24%,#1b1045 58%,transparent 68%);filter:blur(.2px);box-shadow:0 0 80px rgba(0,199,255,.35);opacity:.82;animation:floatB 8s ease-in-out infinite reverse}
+    @keyframes floatA{50%{transform:rotateY(-5deg) rotateX(2deg) translate3d(0,-16px,0)}}@keyframes floatB{50%{transform:rotateY(8deg) rotateZ(-2deg) translate3d(8px,12px,0)}}
+    .ticker{border-block:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.025)}.ticker-track{display:flex;width:max-content;gap:42px;padding:14px 0;will-change:transform}.ticker span{color:#b7c5df;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.ticker b{color:var(--cyan)}@keyframes ticker{to{transform:translateX(-50%)}}
+
+    .orbit-section{padding:130px 0 120px;position:relative;min-height:980px}.section-title{text-align:center;max-width:920px;margin:0 auto 52px}.section-title .kicker{color:var(--cyan);font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:12px}.section-title h2{font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.055em;margin:14px 0}.section-title p{color:var(--muted);font-size:18px;line-height:1.55}
+    .orbit-shell{height:610px;position:relative;max-width:1150px;margin:0 auto;perspective:1400px;user-select:none;touch-action:none}
+    .orbit-glow{position:absolute;left:50%;bottom:44px;width:78%;height:330px;transform:translateX(-50%);border-radius:50% 50% 12% 12%;border-top:1px solid rgba(0,199,255,.55);box-shadow:0 -30px 95px rgba(0,199,255,.12),inset 0 25px 80px rgba(141,61,255,.06);background:linear-gradient(180deg,rgba(0,199,255,.035),transparent 65%);pointer-events:none}
+    .orbit-center{position:absolute;left:50%;bottom:60px;transform:translateX(-50%);width:260px;height:260px;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 35%,rgba(0,199,255,.16),rgba(8,17,39,.82) 60%);border:1px solid rgba(0,199,255,.32);box-shadow:0 0 80px rgba(0,199,255,.15),inset 0 0 34px rgba(255,255,255,.03);backdrop-filter:blur(20px);z-index:6}
+    .orbit-center strong{font-size:27px;line-height:1}.orbit-center span{display:block;color:var(--muted);font-size:13px;margin-top:8px}.gesture{font-size:56px;line-height:1;display:block;filter:drop-shadow(0 0 14px rgba(0,199,255,.45));transform:translateX(var(--handx,0px)) rotate(var(--handr,0deg));transition:transform .08s linear}
+    .orbit-card{position:absolute;width:220px;height:138px;left:50%;bottom:168px;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.14);background:#071128;box-shadow:0 22px 60px rgba(0,0,0,.3),0 0 26px rgba(0,199,255,.10);transform-origin:center;transition:filter .25s,opacity .25s,border-color .25s;cursor:pointer;will-change:transform}.orbit-card img{width:100%;height:100%;object-fit:cover}.orbit-card::after{content:attr(data-title);position:absolute;left:10px;right:10px;bottom:9px;padding:8px 10px;border-radius:11px;background:rgba(2,8,22,.72);backdrop-filter:blur(10px);font-size:12px;font-weight:900;letter-spacing:.02em}.orbit-card:hover{border-color:rgba(0,199,255,.65);filter:brightness(1.08)}
+    .orbit-hint{text-align:center;color:#8fa1bf;font-size:13px;margin-top:4px}
+
+    .services{padding:50px 0 130px}.service{display:grid;grid-template-columns:.8fr 1.2fr;gap:46px;align-items:center;padding:56px 0;min-height:72vh}.service:nth-child(even){grid-template-columns:1.2fr .8fr}.service:nth-child(even) .service-copy{order:2}.service-copy{position:relative}.num{font-size:12px;font-weight:900;color:var(--cyan);letter-spacing:.2em}.service h3{font-size:clamp(34px,4.6vw,66px);line-height:.94;letter-spacing:-.055em;margin:12px 0 18px}.service p{color:#aebbd2;font-size:18px;line-height:1.6;max-width:560px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.chip{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:8px 11px;color:#c7d4e8;font-size:12px;font-weight:800}.service-media{position:relative;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);box-shadow:0 34px 90px rgba(0,0,0,.28);transform-style:preserve-3d;transition:transform .18s ease-out}.service-media::before{content:"";position:absolute;inset:0;background:linear-gradient(130deg,rgba(255,255,255,.12),transparent 26%,transparent 66%,rgba(0,199,255,.11));mix-blend-mode:screen;z-index:2;pointer-events:none}.service-media img{width:100%;display:block;aspect-ratio:3/1;object-fit:cover}.service-media::after{content:none}
+
+    .final{padding:130px 0 150px}.final-card{position:relative;overflow:hidden;text-align:center;border:1px solid rgba(255,255,255,.12);border-radius:34px;padding:86px 28px;background:linear-gradient(145deg,rgba(9,23,54,.86),rgba(15,9,43,.72));box-shadow:0 40px 110px rgba(0,0,0,.34)}.final-card::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(0,199,255,.28),transparent 67%);left:-120px;top:-200px}.final-card::after{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(141,61,255,.28),transparent 67%);right:-100px;bottom:-240px}.final h2{position:relative;z-index:2;font-size:clamp(42px,6vw,84px);line-height:.92;letter-spacing:-.06em;margin:0 auto 20px;max-width:930px}.final p{position:relative;z-index:2;color:#b7c4db;font-size:18px;max-width:710px;margin:0 auto 28px}.final .actions{justify-content:center;position:relative;z-index:2}
+    footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7789a6;font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.show{opacity:1;transform:none}
+    @media (max-width:900px){.navlinks a:not(.cta){display:none}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:420px}.device.big{right:0}.service,.service:nth-child(even){grid-template-columns:1fr;min-height:auto;padding:42px 0}.service:nth-child(even) .service-copy{order:0}.orbit-section{min-height:890px}.orbit-shell{height:560px}.orbit-card{width:180px;height:113px}.orbit-center{width:220px;height:220px}.service h3{max-width:700px}}
+    @media (max-width:620px){.wrap{width:min(100% - 22px,1240px)}.hero{padding-top:100px}.hero-visual{min-height:300px}.device.small{display:none}.orb{width:110px;height:110px}.orbit-section{padding-top:90px;min-height:780px}.orbit-shell{height:470px}.orbit-card{width:132px;height:84px;border-radius:13px}.orbit-card::after{font-size:9px;left:5px;right:5px;bottom:5px;padding:5px 6px}.orbit-center{width:175px;height:175px;bottom:50px}.gesture{font-size:43px}.orbit-center strong{font-size:20px}.orbit-glow{bottom:30px}.service-media{border-radius:19px}.service p,.section-title p,.final p{font-size:16px}}
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
+    /* Brand + typography refinements */
+    .logo-shell{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.96);overflow:hidden;box-shadow:0 0 28px rgba(0,199,255,.22)}
+    .logo-shell img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+    .hero-title{word-spacing:.14em;letter-spacing:-.045em}
+
+    /* One-line horizontal service ticker */
+    .ticker-track{flex-wrap:nowrap;white-space:nowrap;align-items:center;gap:54px;padding:16px 0;will-change:transform}
+    .ticker span{display:inline-flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.12em}
+
+    /* Floating text orbit: no image cards */
+    .orbit-shell{isolation:isolate}
+    .orbit-shell::before{content:"";position:absolute;left:50%;bottom:94px;width:360px;height:360px;transform:translateX(-50%);border-radius:44% 56% 52% 48%/52% 42% 58% 48%;background:radial-gradient(circle at 35% 28%,rgba(0,199,255,.20),rgba(100,55,255,.12) 42%,rgba(3,8,23,.05) 68%);filter:blur(4px);box-shadow:0 0 90px rgba(0,199,255,.16);animation:morph 8s ease-in-out infinite alternate;pointer-events:none;z-index:1}
+    @keyframes morph{0%{border-radius:44% 56% 52% 48%/52% 42% 58% 48%;transform:translateX(-50%) rotate(-4deg) scale(.96)}100%{border-radius:57% 43% 41% 59%/45% 59% 41% 55%;transform:translateX(-50%) rotate(5deg) scale(1.06)}}
+    .orbit-item{position:absolute;left:50%;bottom:185px;width:210px;min-height:66px;padding:10px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.13);background:rgba(5,12,31,.66);backdrop-filter:blur(18px) saturate(145%);box-shadow:0 16px 50px rgba(0,0,0,.25),0 0 28px rgba(0,199,255,.08);display:flex;align-items:center;gap:11px;justify-content:flex-start;text-align:left;cursor:pointer;will-change:transform,opacity,filter;transition:border-color .22s,box-shadow .22s;color:#fff;font-weight:850;letter-spacing:-.01em}
+    .orbit-item:hover{border-color:rgba(0,199,255,.7);box-shadow:0 18px 60px rgba(0,0,0,.32),0 0 34px rgba(0,199,255,.18)}
+    .orbit-icon{width:42px;height:42px;flex:0 0 42px;border-radius:50%;display:grid;place-items:center;font-size:21px;background:linear-gradient(135deg,rgba(0,199,255,.19),rgba(141,61,255,.19));border:1px solid rgba(92,214,255,.4);box-shadow:inset 0 0 20px rgba(255,255,255,.03),0 0 18px rgba(0,199,255,.10)}
+    .orbit-center{z-index:12}
+
+    /* Unified visual frame for every service */
+    .service-media{aspect-ratio:3/1;border-radius:24px;background:#071128;padding:0;overflow:hidden;position:relative;border:0;box-shadow:0 30px 80px rgba(0,0,0,.32),0 0 44px rgba(0,199,255,.07)}
+    .service-media::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(3,8,23,.10),transparent 18%,transparent 82%,rgba(3,8,23,.08));border-radius:inherit}
+    .service-media img{width:102%;height:102%;margin:-1%;display:block;object-fit:cover;aspect-ratio:3/1;border-radius:24px;filter:saturate(.96) contrast(1.02)}
+    .media-glass{position:absolute;z-index:5;left:22px;bottom:20px;display:flex;flex-direction:column;gap:2px;padding:10px 13px;border-radius:13px;background:rgba(3,10,26,.62);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);pointer-events:none;max-width:58%}
+    .media-glass strong{font-size:13px}.media-glass span{font-size:10px;color:#aabbd5;letter-spacing:.08em;text-transform:uppercase}
+    .foot-brand{display:flex;align-items:center;gap:10px}.foot-brand img{width:36px;height:36px;object-fit:cover;background:#fff;border-radius:50%;padding:0}
+
+    /* Custom luminous cursor */
+    @media (pointer:fine){body{cursor:none}a,button{cursor:none}.cursor-dot,.cursor-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:200;mix-blend-mode:screen}.cursor-dot{width:7px;height:7px;border-radius:50%;background:#b9f4ff;box-shadow:0 0 16px #00c7ff}.cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,199,255,.55);box-shadow:0 0 28px rgba(0,199,255,.22);transition:width .18s,height .18s,border-color .18s}}
+
+    @media (max-width:900px){.hero-title{word-spacing:.08em}.orbit-item{width:175px;min-height:58px;font-size:13px}.orbit-icon{width:36px;height:36px;flex-basis:36px}.service-media{aspect-ratio:3/1}}
+    @media (max-width:620px){.hero-title{word-spacing:.04em}.orbit-item{width:142px;min-height:52px;padding:7px 9px;font-size:11px}.orbit-icon{width:32px;height:32px;flex-basis:32px;font-size:16px}.media-glass{display:none}.ticker-track{gap:38px}.service-media{aspect-ratio:3/1;padding:0;border-radius:17px}.service-media img{border-radius:17px}}
+
+    /* Dark 3D space-travel transition between navigator and service */
+    .space-journey{position:fixed;inset:0;z-index:180;pointer-events:none;opacity:0;visibility:hidden;overflow:hidden;background:radial-gradient(circle at 50% 48%,#101a36 0,#071126 28%,#030714 62%,#01030a 100%);perspective:900px;transition:opacity .18s ease,visibility 0s linear .9s}
+    .space-journey.on{opacity:1;visibility:visible;transition:opacity .16s ease}
+    .space-journey::before{content:"";position:absolute;inset:-20%;background:conic-gradient(from 0deg at 50% 50%,transparent 0 10%,rgba(27,87,143,.12) 14%,transparent 21% 37%,rgba(63,29,104,.10) 43%,transparent 50% 72%,rgba(12,117,126,.10) 78%,transparent 86%);filter:blur(28px);animation:spaceSpin 8s linear infinite}
+    .space-tunnel{position:absolute;left:50%;top:50%;width:18vmin;height:18vmin;border:1px solid rgba(107,205,255,.18);border-radius:50%;transform:translate(-50%,-50%) translateZ(-300px);box-shadow:0 0 80px rgba(40,111,170,.10),inset 0 0 55px rgba(93,38,165,.08)}
+    .space-journey.on .space-tunnel{animation:tunnelRush 1.18s cubic-bezier(.18,.74,.25,1) forwards}
+    .space-star{position:absolute;left:50%;top:50%;width:2px;height:2px;border-radius:50%;background:rgba(211,235,255,.78);box-shadow:0 0 7px rgba(105,195,255,.55);transform:translate3d(var(--x),var(--y),var(--z)) scale(.35);opacity:.15}
+    .space-journey.on .space-star{animation:starRush var(--dur) cubic-bezier(.16,.7,.22,1) var(--delay) forwards}
+    .space-shard{position:absolute;left:50%;top:50%;width:var(--w);height:var(--h);border:1px solid rgba(114,171,220,.18);background:linear-gradient(135deg,rgba(18,44,70,.42),rgba(15,12,40,.12));clip-path:polygon(50% 0,100% 35%,72% 100%,10% 80%,0 22%);transform:translate3d(var(--x),var(--y),var(--z)) rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz));opacity:.16;backdrop-filter:blur(5px)}
+    .space-journey.on .space-shard{animation:shardFly var(--dur) cubic-bezier(.15,.72,.2,1) var(--delay) forwards}
+    .journey-copy{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateZ(40px);text-align:center;opacity:0;min-width:min(82vw,680px)}
+    .space-journey.on .journey-copy{animation:copyIn 1.08s ease forwards}
+    .journey-kicker{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#7f99b8;margin-bottom:13px;font-weight:800}
+    .journey-title{font-size:clamp(28px,5vw,62px);font-weight:900;letter-spacing:-.05em;color:#f5f8ff;text-shadow:0 0 35px rgba(56,144,220,.16)}
+    .journey-line{width:0;height:1px;margin:18px auto 0;background:linear-gradient(90deg,transparent,#5688b8,transparent);box-shadow:0 0 14px rgba(84,142,195,.25)}
+    .space-journey.on .journey-line{animation:lineGrow .7s ease .14s forwards}
+    @keyframes spaceSpin{to{transform:rotate(360deg)}}
+    @keyframes tunnelRush{0%{transform:translate(-50%,-50%) translateZ(-520px) scale(.3);opacity:.1}45%{opacity:.5}100%{transform:translate(-50%,-50%) translateZ(540px) scale(11);opacity:0}}
+    @keyframes starRush{0%{transform:translate3d(var(--x),var(--y),-650px) scale(.25);opacity:.08}35%{opacity:.65}100%{transform:translate3d(calc(var(--x)*4.8),calc(var(--y)*4.8),520px) scale(3.4);opacity:0}}
+    @keyframes shardFly{0%{transform:translate3d(var(--x),var(--y),-500px) rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz)) scale(.3);opacity:.05}42%{opacity:.3}100%{transform:translate3d(calc(var(--x)*3.2),calc(var(--y)*3.2),620px) rotateX(calc(var(--rx) + 110deg)) rotateY(calc(var(--ry) + 160deg)) rotateZ(calc(var(--rz) + 80deg)) scale(2.2);opacity:0}}
+    @keyframes copyIn{0%{opacity:0;transform:translate(-50%,-50%) translateZ(-140px) scale(.82);filter:blur(8px)}28%{opacity:1;filter:blur(0)}76%{opacity:1;transform:translate(-50%,-50%) translateZ(100px) scale(1.02)}100%{opacity:0;transform:translate(-50%,-50%) translateZ(210px) scale(1.08)}}
+    @keyframes lineGrow{to{width:min(330px,62vw)}}
+    @media (prefers-reduced-motion:reduce){.space-star,.space-shard,.space-tunnel{display:none}.space-journey.on .journey-copy{animation:none;opacity:1}}
+  </style>
+</head>
+<body><div class="cursor-dot" id="cursorDot"></div><div class="cursor-ring" id="cursorRing"></div>
+  <div class="space-journey" id="spaceJourney" aria-hidden="true">
+    <div class="space-tunnel"></div>
+    <div id="spaceStars"></div>
+    <div id="spaceShards"></div>
+    <div class="journey-copy"><div class="journey-kicker">Navigazione immersiva</div><div class="journey-title" id="journeyTitle">Esplora il servizio</div><div class="journey-line"></div></div>
+  </div>
+  <div class="topbar"><div class="wrap nav">
+    <a class="brand" href="#top" aria-label="With You Agency"><span class="logo-shell"><img src="assets/logo-with-you.png" alt="With You Agency"></span><span>WITH YOU AGENCY</span></a>
+    <div class="navlinks"><a href="#experience">Experience</a><a href="#servizi">Servizi</a><a class="cta" href="#contatti">Parliamone</a></div>
+  </div></div>
+
+  <main id="top">
+    <section class="hero">
+      <canvas id="particles"></canvas><div class="aurora"></div>
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Digital Experience for Events</div>
+          <h1 class="hero-title">Eventi che si <span class="grad">sentono.</span><br>Prima ancora di iniziare.</h1>
+          <p>Un ecosistema di servizi digitali, interattivi e personalizzabili per trasformare accoglienza, engagement e guest experience in qualcosa che resta impresso.</p>
+          <div class="actions"><a class="btn primary" href="#experience">Esplora i servizi</a><a class="btn" href="#contatti">Richiedi una demo</a></div>
+        </div>
+        <div class="hero-visual" aria-label="Anteprima servizi digitali">
+          <div class="device big"><img src="assets/concierge.png" alt="Concierge AI"></div>
+          <div class="device small"><img src="assets/ruota.png" alt="Ruota della fortuna digitale"></div>
+          <div class="orb"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker"><div class="ticker-track" id="tickerTrack">
+      <span>Check-in digitale</span><span>App personalizzata</span><span>NFC access</span><span>Touch screen</span><span>Ruota digitale</span><span>Face swap</span><span>Photo cartolina</span><span>Quiz live</span><span>Concierge AI</span>
+      <span>Check-in digitale</span><span>App personalizzata</span><span>NFC access</span><span>Touch screen</span><span>Ruota digitale</span><span>Face swap</span><span>Photo cartolina</span><span>Quiz live</span><span>Concierge AI</span>
+    </div></div>
+
+    <section class="orbit-section" id="experience">
+      <div class="wrap">
+        <div class="section-title reveal"><div class="kicker">Interactive service navigator</div><h2>Muovi il mouse.<br><span class="grad">Fai ruotare l’esperienza.</span></h2><p>I servizi fluttuano nello spazio: spostati a destra o sinistra, oppure trascina i titoli, per far ruotare il menu in entrambe le direzioni.</p></div>
+        <div class="orbit-shell" id="orbit">
+          <div class="orbit-glow"></div>
+          <a class="orbit-item" href="#service-0" data-index="0"><span class="orbit-icon">✓</span><span>Check-in digitale</span></a>
+          <a class="orbit-item" href="#service-1" data-index="1"><span class="orbit-icon">▦</span><span>App eventi</span></a>
+          <a class="orbit-item" href="#service-2" data-index="2"><span class="orbit-icon">⌁</span><span>NFC access</span></a>
+          <a class="orbit-item" href="#service-3" data-index="3"><span class="orbit-icon">▣</span><span>Touch screen</span></a>
+          <a class="orbit-item" href="#service-4" data-index="4"><span class="orbit-icon">✦</span><span>Ruota digitale</span></a>
+          <a class="orbit-item" href="#service-5" data-index="5"><span class="orbit-icon">◎</span><span>Face swap</span></a>
+          <a class="orbit-item" href="#service-6" data-index="6"><span class="orbit-icon">▤</span><span>Photo cartolina</span></a>
+          <a class="orbit-item" href="#service-7" data-index="7"><span class="orbit-icon">?</span><span>Quiz live</span></a>
+          <a class="orbit-item" href="#service-8" data-index="8"><span class="orbit-icon">✧</span><span>Concierge AI</span></a>
+          <div class="orbit-center"><div><span class="gesture" id="gesture">☝️</span><strong>SCORRI</strong><span>destra ↔ sinistra</span></div></div>
+        </div>
+        <div class="orbit-hint">Suggerimento: muovi il puntatore nella metà sinistra o destra del menu per cambiare il senso di rotazione.</div>
+      </div>
+    </section>
+
+    <section class="services" id="servizi"><div class="wrap" id="serviceList"></div></section>
+
+    <section class="final" id="contatti"><div class="wrap"><div class="final-card reveal">
+      <h2>Non un semplice evento.<br><span class="grad">Una guest experience.</span></h2>
+      <p>Combina più servizi nello stesso progetto e costruisci un percorso digitale coerente, personalizzato sul brand, sul pubblico e sugli obiettivi dell’evento.</p>
+      <div class="actions"><a class="btn primary" href="mailto:info@withyouagency.it">info@withyouagency.it</a><a class="btn" href="https://www.withyouagency.it" target="_blank" rel="noreferrer">withyouagency.it</a></div>
+    </div></div></section>
+  </main>
+
+  <footer><div class="wrap foot"><span class="foot-brand"><img src="assets/logo-with-you.png" alt="With You Agency"> © With You Agency — Digital Event Experience</span><span>Hostess · Accredito · Engagement · Event Tech</span></div></footer>
+
+  <script>
+    const SERVICES = [
+      {n:'01',title:'Check-in ospiti digitale',img:'assets/checkin.png',text:'Accredito rapido e ordinato con flussi digitali pensati per ridurre code, errori e tempi di attesa.',chips:['QR code','Liste ospiti','Accredito rapido']},
+      {n:'02',title:'App personalizzata per eventi',img:'assets/app-evento.png',text:'Agenda, mappa, QR code, relatori, taxi e contenuti utili in un’unica esperienza coordinata con il brand.',chips:['Agenda','Mappa','QR code','Relatori','Taxi']},
+      {n:'03',title:'Bracciali NFC per ospiti',img:'assets/nfc.png',text:'Accessi più semplici e controllati per aree private, zone riservate e percorsi differenziati durante l’evento.',chips:['Aree private','Accesso limitato','Controllo ingressi']},
+      {n:'04',title:'Totem touch screen',img:'assets/totem.png',text:'Punti interattivi per orientare, informare e far partecipare gli ospiti con contenuti dinamici e personalizzabili.',chips:['Touch','Wayfinding','Contenuti interattivi']},
+      {n:'05',title:'Ruota della fortuna digitale',img:'assets/ruota.png',text:'Un gioco immediato e visivo per distribuire gadget, creare engagement e personalizzare premi e probabilità.',chips:['Gadget','Engagement','Personalizzazione']},
+      {n:'06',title:'Photo Face Swap',img:'assets/faceswap.png',text:'L’ospite scatta una foto e diventa protagonista di scenari e soggetti creati per il brand, pronti da condividere.',chips:['AI photo','Brand content','Condivisione']},
+      {n:'07',title:'Photo cartolina personalizzata',img:'assets/cartolina.png',text:'Uno scatto brandizzato da scaricare, condividere o stampare sul momento come ricordo fisico dell’esperienza.',chips:['Foto','Logo evento','Stampa','Download']},
+      {n:'08',title:'Gioco quiz interattivo',img:'assets/quiz.png',text:'Domande personalizzate, sfida dal vivo e contenuti proiettabili su LEDwall per coinvolgere pubblico e concorrenti.',chips:['Quiz','Domande custom','LEDwall']},
+      {n:'09',title:'Concierge AI',img:'assets/concierge.png',text:'Un assistente digitale disponibile su smartphone e touch screen per rispondere, orientare e supportare gli ospiti.',chips:['AI','Smartphone','Touch screen','Supporto 24/7']}
+    ];
+    const list = document.querySelector('#serviceList');
+    list.innerHTML = SERVICES.map((s,i)=>`<article class="service reveal" id="service-${i}"><div class="service-copy"><div class="num">${s.n} / 09</div><h3>${s.title}</h3><p>${s.text}</p><div class="chips">${s.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div></div><div class="service-media" data-tilt><img src="${s.img}" alt="${s.title}"><div class="media-glass"><strong>${s.title}</strong><span>Digital Event Experience</span></div></div></article>`).join('');
+
+    // Fluid pointer light
+    window.addEventListener('pointermove', e=>{document.documentElement.style.setProperty('--mx',e.clientX+'px');document.documentElement.style.setProperty('--my',e.clientY+'px')},{passive:true});
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries=>entries.forEach(e=>e.isIntersecting && e.target.classList.add('show')),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Orbit / semicircle menu
+    const orbit = document.querySelector('#orbit');
+    const cards = [...orbit.querySelectorAll('.orbit-item')];
+    const gesture = document.querySelector('#gesture');
+    let rot = 0, targetRot = 0, velocity = 0, dragging=false, lastX=0, auto=.0034;
+    function layout(){
+      const w=orbit.clientWidth, radius=Math.min(w*.39,440);
+      cards.forEach((card,i)=>{
+        const step=Math.PI/(cards.length-1);
+        const angle=(Math.PI - i*step) + rot;
+        const x=Math.cos(angle)*radius;
+        const y=-Math.sin(angle)*250;
+        const depth=(Math.sin(angle)+1)/2;
+        const scale=.78 + depth*.28;
+        const z=Math.round(1+depth*8);
+        card.style.transform=`translate3d(calc(-50% + ${x}px), ${y}px, ${depth*80}px) scale(${scale}) rotateY(${(x/radius)*-12}deg) rotateZ(${(x/radius)*3}deg)`;
+        card.style.opacity=.52+depth*.48;
+        card.style.zIndex=z;
+        card.style.filter=`saturate(${.72+depth*.5}) brightness(${.76+depth*.28})`;
+      });
+    }
+    function tick(){
+      if(!dragging){
+        velocity += (auto-velocity)*.05;
+        targetRot += velocity;
+      }
+      rot += (targetRot-rot)*.11;
+      layout();requestAnimationFrame(tick);
+    }
+    orbit.addEventListener('pointermove',e=>{
+      const r=orbit.getBoundingClientRect();const nx=(e.clientX-r.left)/r.width-.5;
+      const h=Math.max(-52,Math.min(52,nx*115));gesture.style.setProperty('--handx',h+'px');gesture.style.setProperty('--handr',(nx*18)+'deg');
+      if(!dragging){auto=nx*.012; if(Math.abs(nx)<.08) auto=0;}
+      else{const dx=e.clientX-lastX;targetRot+=dx*.0048;lastX=e.clientX;}
+    });
+    orbit.addEventListener('pointerleave',()=>{gesture.style.setProperty('--handx','0px');gesture.style.setProperty('--handr','0deg');auto=.0034});
+    let dragDistance=0, dragStartX=0;
+    orbit.addEventListener('pointerdown',e=>{
+      // I titoli dei servizi devono restare veri link cliccabili.
+      if(e.target.closest('.orbit-item')) return;
+      dragging=true;dragStartX=e.clientX;dragDistance=0;lastX=e.clientX;
+      orbit.setPointerCapture(e.pointerId);
+    });
+    orbit.addEventListener('pointerup',()=>dragging=false);orbit.addEventListener('pointercancel',()=>dragging=false);
+    orbit.addEventListener('wheel',e=>{e.preventDefault();targetRot += Math.sign(e.deltaY)*.18},{passive:false});
+    const spaceJourney=document.querySelector('#spaceJourney');
+    const journeyTitle=document.querySelector('#journeyTitle');
+    const starHost=document.querySelector('#spaceStars');
+    const shardHost=document.querySelector('#spaceShards');
+
+    // Build a deep, dark 3D field once. Random values become CSS variables so the GPU handles the trip.
+    const rnd=(a,b)=>a+Math.random()*(b-a);
+    for(let i=0;i<82;i++){
+      const el=document.createElement('i'); el.className='space-star';
+      el.style.setProperty('--x',rnd(-34,34)+'vw'); el.style.setProperty('--y',rnd(-30,30)+'vh');
+      el.style.setProperty('--z',rnd(-700,-100)+'px'); el.style.setProperty('--dur',rnd(.72,1.16)+'s'); el.style.setProperty('--delay',rnd(0,.18)+'s');
+      starHost.appendChild(el);
+    }
+    for(let i=0;i<14;i++){
+      const el=document.createElement('b'); el.className='space-shard';
+      el.style.setProperty('--x',rnd(-31,31)+'vw'); el.style.setProperty('--y',rnd(-28,28)+'vh'); el.style.setProperty('--z',rnd(-680,-150)+'px');
+      el.style.setProperty('--w',rnd(30,105)+'px'); el.style.setProperty('--h',rnd(18,72)+'px');
+      el.style.setProperty('--rx',rnd(-70,70)+'deg'); el.style.setProperty('--ry',rnd(-70,70)+'deg'); el.style.setProperty('--rz',rnd(-70,70)+'deg');
+      el.style.setProperty('--dur',rnd(.82,1.2)+'s'); el.style.setProperty('--delay',rnd(0,.14)+'s'); shardHost.appendChild(el);
+    }
+
+    function travelTo(target,title){
+      if(!target || spaceJourney.classList.contains('on')) return;
+      journeyTitle.textContent=title || 'Esplora il servizio';
+      spaceJourney.classList.add('on');
+      spaceJourney.setAttribute('aria-hidden','false');
+      document.documentElement.style.scrollBehavior='auto';
+      const y=target.getBoundingClientRect().top + window.scrollY - 70;
+      // The actual page jump happens while the space tunnel completely covers the viewport.
+      setTimeout(()=>window.scrollTo(0,y),430);
+      setTimeout(()=>{
+        spaceJourney.classList.remove('on');
+        spaceJourney.setAttribute('aria-hidden','true');
+        document.documentElement.style.scrollBehavior='';
+        target.classList.add('show');
+      },1160);
+    }
+
+    orbit.addEventListener('pointermove',e=>{if(dragging) dragDistance=Math.max(dragDistance,Math.abs(e.clientX-dragStartX))});
+    cards.forEach(c=>{
+      c.addEventListener('pointerdown',e=>e.stopPropagation());
+      c.addEventListener('click',e=>{
+        e.preventDefault(); e.stopPropagation();
+        const target=document.querySelector(c.getAttribute('href'));
+        travelTo(target,c.textContent.trim());
+      });
+    });
+    tick();
+
+    // Magnetic 3D service cards
+    document.querySelectorAll('[data-tilt]').forEach(card=>{
+      card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(1000px) rotateX(${-y*7}deg) rotateY(${x*8}deg) translateY(-3px)`});
+      card.addEventListener('pointerleave',()=>card.style.transform='');
+    });
+
+
+    // Luminous custom cursor with soft inertia
+    const cursorDot=document.querySelector('#cursorDot'), cursorRing=document.querySelector('#cursorRing');
+    let cx=innerWidth/2,cy=innerHeight/2,rx=cx,ry=cy;
+    if(matchMedia('(pointer:fine)').matches){
+      addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY;cursorDot.style.transform=`translate3d(${cx-3.5}px,${cy-3.5}px,0)`},{passive:true});
+      const cursorTick=()=>{rx+=(cx-rx)*.16;ry+=(cy-ry)*.16;cursorRing.style.transform=`translate3d(${rx-17}px,${ry-17}px,0)`;requestAnimationFrame(cursorTick)};cursorTick();
+      document.querySelectorAll('a,button,.service-media').forEach(el=>{el.addEventListener('pointerenter',()=>{cursorRing.style.width='54px';cursorRing.style.height='54px';cursorRing.style.borderColor='rgba(177,101,255,.75)'});el.addEventListener('pointerleave',()=>{cursorRing.style.width='34px';cursorRing.style.height='34px';cursorRing.style.borderColor='rgba(0,199,255,.55)'})});
+    }
+
+
+    // Continuous horizontal service ticker — JS driven so it always moves reliably
+    const tickerTrack=document.querySelector('#tickerTrack');
+    let tickerX=0, tickerLast=performance.now();
+    function tickerTick(now){
+      const dt=Math.min(50,now-tickerLast); tickerLast=now;
+      tickerX -= dt * 0.055; // ~55 px/sec
+      const half=tickerTrack.scrollWidth/2;
+      if(-tickerX >= half) tickerX += half;
+      tickerTrack.style.transform=`translate3d(${tickerX}px,0,0)`;
+      requestAnimationFrame(tickerTick);
+    }
+    requestAnimationFrame(tickerTick);
+
+    // Lightweight particle field
+    const canvas=document.querySelector('#particles'),ctx=canvas.getContext('2d');let pts=[];
+    function resize(){const d=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*d;canvas.height=innerHeight*d;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(d,0,0,d,0,0);pts=Array.from({length:Math.min(95,Math.floor(innerWidth/16))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5+.35,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.14,a:Math.random()*.55+.18}))}
+    function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=innerWidth;if(p.x>innerWidth)p.x=0;if(p.y<0)p.y=innerHeight;if(p.y>innerHeight)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(115,207,255,${p.a})`;ctx.fill()}requestAnimationFrame(draw)}
+    addEventListener('resize',resize);resize();draw();
+  </script>
+</body>
+</html>
