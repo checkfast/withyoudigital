@@ -215,7 +215,7 @@
       {n:'',title:'Concierge AI',img:'assets/concierge.png',text:'Un assistente digitale disponibile su smartphone e touch screen per rispondere, orientare e supportare gli ospiti.',chips:['AI','Smartphone','Touch screen','Supporto 24/7']}
     ];
     const list = document.querySelector('#serviceList');
-    list.innerHTML = SERVICES.map((s,i)=>`<article class="service reveal" id="service-${i}"><div class="service-copy"><div class="num">${s.n} </div><h3>${s.title}</h3><p>${s.text}</p><div class="chips">${s.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div></div><div class="service-media" data-tilt><img src="${s.img}" alt="${s.title}"><div class="media-glass"><strong>${s.title}</strong><span>Digital Event Experience</span></div></div></article>`).join('');
+    list.innerHTML = SERVICES.map((s,i)=>`<article class="service reveal" id="service-${i}"><div class="service-copy"><h3>${s.title}</h3><p>${s.text}</p><div class="chips">${s.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div></div><div class="service-media" data-tilt><img src="${s.img}" alt="${s.title}"><div class="media-glass"><strong>${s.title}</strong><span>Digital Event Experience</span></div></div></article>`).join('');
 
     // Fluid pointer light
     window.addEventListener('pointermove', e=>{document.documentElement.style.setProperty('--mx',e.clientX+'px');document.documentElement.style.setProperty('--my',e.clientY+'px')},{passive:true});
